@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Dynam Peak | CCTV Installation – Smart Security Solutions</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { 
+      overflow-x: hidden !important; 
+      width: 100%; 
+      position: relative;
+      scroll-behavior: smooth;
+    }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: #0a0a0a;
+      color: #e0e0e0; 
+      overflow-x: hidden !important; 
+      width: 100%;
+    }
+    .container-custom { 
+      max-width: 1280px; 
+      margin: 0 auto; 
+      padding: 0 24px; 
+      width: 100%;
+      box-sizing: border-box;
+    }
+    :root {
+      --gold: #FFD700;
+      --gold-dark: #DAA520;
+      --gold-light: #FFF0A8;
+      --dark: #0a0a0a;
+      --card-bg: #0F0F0F;
+      --border-glow: rgba(255, 215, 0, 0.3);
+    }
+    
+    /* Back to Home Arrow */
+    .back-home-arrow {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 1100;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(8px);
+      width: 44px;
+      height: 44px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--gold);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--gold);
+      font-size: 1.3rem;
+    }
+    .back-home-arrow:hover {
+      background: var(--gold);
+      color: #000;
+      transform: translateX(-4px);
+    }
+    
+    /* Hero Section with Background Slider */
+    .hero-cctv {
+      position: relative;
+      width: 100%;
+      overflow-x: hidden;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border-glow);
+    }
+    .hero-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+    .hero-slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(125deg, rgba(0,0,0,0.88) 0%, rgba(10,20,30,0.85) 100%);
+      z-index: 2;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      padding: 100px 0 70px;
+      width: 100%;
+    }
+    @media (min-width: 768px) {
+      .hero-content { padding: 120px 0 80px; }
+    }
+    @media (min-width: 992px) {
+      .hero-content { padding: 130px 0 90px; }
+    }
+    .hero-cctv .badge-cctv {
+      background: var(--gold);
+      color: #000;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 40px;
+      display: inline-block;
+      margin-bottom: 15px;
+      font-size: 0.7rem;
+    }
+    .hero-cctv h1 { 
+      font-size: 1.8rem; 
+      font-weight: 800; 
+      color: var(--gold); 
+      margin-bottom: 0.8rem; 
+      line-height: 1.2;
+    }
+    @media (min-width: 768px) {
+      .hero-cctv h1 { font-size: 2.2rem; }
+    }
+    @media (min-width: 992px) {
+      .hero-cctv h1 { font-size: 2.6rem; }
+    }
+    .hero-cctv .lead { 
+      font-size: 0.9rem; 
+      max-width: 500px; 
+      margin-bottom: 1.2rem;
+    }
+    @media (min-width: 768px) {
+      .hero-cctv .lead { font-size: 1rem; }
+    }
+    
+    .animate-item { opacity: 0; transform: translateY(20px); animation: sweetFloatUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    @keyframes sweetFloatUp {
+      0% { opacity: 0; transform: translateY(20px); filter: blur(4px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    
+    .section-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 35px; text-align: center; color: var(--gold); position: relative; }
+    .section-title:after { content: ''; display: block; width: 60px; height: 3px; background: var(--gold); margin: 10px auto 0; border-radius: 4px; }
+    @media (min-width: 768px) { .section-title { font-size: 2rem; margin-bottom: 42px; } }
+    
+    .service-card-cctv {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 24px 20px;
+      transition: all 0.3s;
+      height: 100%;
+      border: 1px solid var(--border-glow);
+      text-align: center;
+    }
+    .service-card-cctv:hover { transform: translateY(-6px); border-color: var(--gold); }
+    .icon-circle {
+      width: 65px;
+      height: 65px;
+      background: rgba(255,215,0,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+    .icon-circle i { font-size: 2rem; color: var(--gold); }
+    .service-card-cctv h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--gold); }
+    .service-card-cctv p { font-size: 0.8rem; color: #bbb; }
+    
+    .process-step-cctv {
+      display: flex;
+      gap: 15px;
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 20px;
+      border-left: 5px solid var(--gold);
+    }
+    @media (max-width: 768px) {
+      .process-step-cctv { flex-direction: column; text-align: center; align-items: center; border-left: none; border-top: 5px solid var(--gold); }
+      .step-number { margin-bottom: 6px; }
+    }
+    .step-number { font-size: 2rem; font-weight: 800; color: var(--gold); opacity: 0.6; line-height: 1; }
+    .process-step-cctv h4 { font-size: 1rem; margin-bottom: 4px; color: var(--gold); }
+    .process-step-cctv p { font-size: 0.75rem; color: #ccc; }
+    
+    /* Before & After Card */
+    .beforeafter-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-glow);
+      transition: transform 0.3s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .beforeafter-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+    .image-comparison { position: relative; width: 100%; height: 200px; overflow: hidden; background: #0a0a0a; }
+    @media (min-width: 576px) { .image-comparison { height: 220px; } }
+    @media (min-width: 992px) { .image-comparison { height: 240px; } }
+    .before-img, .after-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.5s ease-in-out; }
+    .before-img { opacity: 1; z-index: 1; }
+    .after-img { opacity: 0; z-index: 2; }
+    .beforeafter-card.countdown-active .after-img { opacity: 1; }
+    .beforeafter-card.countdown-active .before-img { opacity: 0; }
+    
+    .countdown-overlay {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      padding: 3px 10px;
+      border-radius: 40px;
+      z-index: 10;
+      font-weight: 700;
+      font-size: 0.65rem;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      white-space: nowrap;
+    }
+    @media (max-width: 576px) { .countdown-overlay { font-size: 0.55rem; padding: 2px 8px; } }
+    .badge-status {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(0,0,0,0.7);
+      padding: 3px 10px;
+      border-radius: 40px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      z-index: 10;
+      white-space: nowrap;
+    }
+    @media (max-width: 576px) { .badge-status { font-size: 0.55rem; padding: 2px 8px; } }
+    .badge-before { background: #7a2e00; color: #ffb347; }
+    .badge-after { background: var(--gold); color: #000; }
+    .card-body-content { padding: 14px 14px 18px; flex: 1; }
+    .project-title { font-size: 1rem; font-weight: 800; color: var(--gold); margin-bottom: 4px; }
+    .project-location { font-size: 0.65rem; color: #aaa; margin-bottom: 8px; }
+    .feature-list { display: flex; gap: 12px; margin-top: 8px; font-size: 0.65rem; flex-wrap: wrap; }
+    .feature-list i { color: var(--gold); width: 18px; }
+    .reset-btn {
+      background: rgba(255,215,0,0.2);
+      border: 1px solid var(--gold);
+      border-radius: 30px;
+      padding: 4px 10px;
+      font-size: 0.65rem;
+      color: var(--gold);
+      cursor: pointer;
+      margin-top: 10px;
+      width: fit-content;
+      transition: 0.2s;
+    }
+    .reset-btn:hover { background: var(--gold); color: #000; }
+    
+    .tech-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 20px 15px;
+      text-align: center;
+      border: 1px solid var(--border-glow);
+      height: 100%;
+    }
+    .tech-card i { font-size: 2rem; color: var(--gold); }
+    .tech-card h5 { font-size: 0.9rem; margin: 10px 0 5px; color: var(--gold); }
+    .tech-card p { font-size: 0.7rem; color: #bbb; }
+    
+    /* Form Styles */
+    .quote-cta {
+      background: var(--card-bg);
+      border-radius: 36px;
+      padding: 30px 25px;
+      text-align: center;
+      border: 1px solid var(--border-glow);
+    }
+    @media (max-width: 768px) { .quote-cta { padding: 25px 20px; border-radius: 28px; } }
+    .quote-cta h2 { font-size: 1.4rem; color: var(--gold); }
+    @media (min-width: 768px) { .quote-cta h2 { font-size: 1.6rem; } }
+    
+    .form-control, .form-select {
+      background: #1e1e1e !important;
+      color: #e0e0e0 !important;
+      border: 1.5px solid var(--border-glow) !important;
+      border-radius: 60px !important;
+      padding: 10px 18px !important;
+      font-size: 0.85rem;
+    }
+    textarea.form-control { border-radius: 20px !important; }
+    .form-control:focus, .form-select:focus { border-color: var(--gold) !important; box-shadow: 0 0 0 2px rgba(255,215,0,0.2); }
+    .form-select option { background: #1e1e1e; color: #e0e0e0; }
+    
+    .btn-gold {
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 60px;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+      font-size: 0.85rem;
+    }
+    .btn-gold:hover { background: var(--gold-dark); transform: translateY(-2px); color: #000; }
+    
+    .faq-item {
+      background: var(--card-bg);
+      border-radius: 18px;
+      margin-bottom: 15px;
+      border: 1px solid var(--border-glow);
+      overflow: hidden;
+    }
+    .faq-question { padding: 14px 18px; font-weight: 700; display: flex; justify-content: space-between; cursor: pointer; color: var(--gold); font-size: 0.9rem; }
+    .faq-answer { max-height: 0; overflow: hidden; padding: 0 18px; transition: max-height 0.4s; color: #b0b0b0; font-size: 0.8rem; }
+    .faq-item.open .faq-answer { max-height: 200px; padding: 0 18px 14px; border-top: 1px solid var(--border-glow); }
+    .faq-item.open .faq-question i { transform: rotate(180deg); }
+    
+    /* Footer */
+    .footer-modern { background: #000000; padding-top: 45px; border-top: 1px solid var(--border-glow); width: 100%; overflow-x: hidden; }
+    .footer-link-modern { color: #e0e0e0 !important; text-decoration: none; display: inline-block; margin-bottom: 10px; transition: 0.2s; font-size: 0.85rem; }
+    .footer-link-modern:hover { color: var(--gold) !important; text-decoration: underline; }
+    .copyright { border-top: 1px solid #1a1a1a; padding: 20px 0; text-align: center; margin-top: 25px; color: #aaa; font-size: 0.7rem; }
+    .text-gold { color: var(--gold); }
+    
+    @media (max-width: 768px) {
+      .hero-content { padding: 80px 0 50px; }
+      .container-custom { padding: 0 18px; }
+      section { padding: 40px 0; }
+    }
+    @media (max-width: 576px) {
+      .hero-cctv h1 { font-size: 1.4rem; }
+      .hero-cctv .lead { font-size: 0.8rem; }
+      .btn-gold { padding: 8px 18px; font-size: 0.75rem; }
+      .section-title { font-size: 1.3rem; margin-bottom: 25px; }
+      .service-card-cctv { padding: 18px 15px; }
+      .icon-circle { width: 50px; height: 50px; }
+      .icon-circle i { font-size: 1.5rem; }
+      .process-step-cctv { padding: 16px; }
+      .feature-list { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="back-home-arrow" title="Back to Home"><i class="fas fa-arrow-left"></i></a>
+
+<!-- Hero Section with Background Slider -->
+<section class="hero-cctv">
+  <div class="hero-slider" id="heroSlider">
+    <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1557321680-cc11e25daeea?w=1920&h=1080&fit=crop');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=1920&h=1080&fit=crop');"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1581092336088-b2c8a43a048b?w=1920&h=1080&fit=crop');"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="container-custom">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="badge-cctv animate-item delay-1"><i class="fas fa-video me-2"></i> 24/7 SECURITY</div>
+          <h1 class="animate-item delay-2">Smart CCTV & Surveillance</h1>
+          <p class="lead animate-item delay-3">HD cameras, AI detection & remote access for complete peace of mind.</p>
+          <div class="animate-item delay-4">
+            <a href="#quoteCCTV" class="btn-gold"><i class="fas fa-shield-alt"></i> Free Assessment →</a>
+          </div>
+          <div class="mt-4 d-flex gap-4 flex-wrap animate-item delay-4">
+            <div><span class="fw-bold fs-3" style="color:var(--gold);">2000+</span><br><span style="font-size:0.7rem;">Cameras Installed</span></div>
+            <div><span class="fw-bold fs-3" style="color:var(--gold);">24/7</span><br><span style="font-size:0.7rem;">Monitoring</span></div>
+            <div><span class="fw-bold fs-3" style="color:var(--gold);">4K</span><br><span style="font-size:0.7rem;">Ultra HD</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Core Services -->
+<div class="container-custom py-4 py-md-5">
+  <div class="section-title" data-aos="fade-up">Our CCTV Solutions</div>
+  <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
+    <div class="col-md-4"><div class="service-card-cctv"><div class="icon-circle"><i class="fas fa-home"></i></div><h4>Residential Security</h4><p>Indoor/outdoor cameras, doorbell cams, smartphone alerts.</p></div></div>
+    <div class="col-md-4"><div class="service-card-cctv"><div class="icon-circle"><i class="fas fa-building"></i></div><h4>Commercial Systems</h4><p>Office buildings, retail stores, NVR with facial recognition.</p></div></div>
+    <div class="col-md-4"><div class="service-card-cctv"><div class="icon-circle"><i class="fas fa-industry"></i></div><h4>Industrial & Public</h4><p>Explosion-proof cameras, LPR, central command centers.</p></div></div>
+  </div>
+</div>
+
+<!-- Installation Process -->
+<section style="background: #0c0c0c; padding: 50px 0;">
+  <div class="container-custom">
+    <div class="section-title" data-aos="fade-up">Installation Process</div>
+    <div class="row g-4">
+      <div class="col-md-6" data-aos="fade-right"><div class="process-step-cctv"><div class="step-number">01</div><div><h4 class="text-gold">Site Survey</h4><p>Camera placement analysis for zero blind spots.</p></div></div></div>
+      <div class="col-md-6" data-aos="fade-left"><div class="process-step-cctv"><div class="step-number">02</div><div><h4 class="text-gold">System Design</h4><p>Custom 4K, PTZ or thermal camera selection.</p></div></div></div>
+      <div class="col-md-6" data-aos="fade-right"><div class="process-step-cctv"><div class="step-number">03</div><div><h4 class="text-gold">Professional Install</h4><p>Mounting, cabling & network integration.</p></div></div></div>
+      <div class="col-md-6" data-aos="fade-left"><div class="process-step-cctv"><div class="step-number">04</div><div><h4 class="text-gold">Calibration & Training</h4><p>Motion tuning & mobile app setup.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE & AFTER: CCTV Transformations -->
+<section class="py-4 py-md-5" style="background: #0a0a0a;">
+  <div class="container-custom">
+    <div class="section-title" data-aos="fade-up">Security Transformations</div>
+    <p class="text-center mb-4" style="color:#bbb; font-size:0.8rem;">Each project reveals the "After" result automatically after 6 seconds</p>
+    <div class="row g-4" id="cctvBeforeAfterGrid"></div>
+  </div>
+</section>
+
+<!-- Technology & Features -->
+<div class="container-custom py-4 py-md-5">
+  <div class="section-title" data-aos="fade-up">Advanced Technology</div>
+  <div class="row g-4">
+    <div class="col-md-3 col-6" data-aos="zoom-in"><div class="tech-card"><i class="fas fa-microchip fa-2x mb-2"></i><h5>AI Detection</h5><p>Person/vehicle alerts</p></div></div>
+    <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="100"><div class="tech-card"><i class="fas fa-cloud-upload-alt fa-2x mb-2"></i><h5>Cloud Storage</h5><p>30-day backup</p></div></div>
+    <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="200"><div class="tech-card"><i class="fas fa-infrared fa-2x mb-2"></i><h5>Night Vision</h5><p>4K color night vision</p></div></div>
+    <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="300"><div class="tech-card"><i class="fas fa-mobile-alt fa-2x mb-2"></i><h5>Mobile App</h5><p>Live view + playback</p></div></div>
+  </div>
+</div>
+
+<!-- Quote Form -->
+<section id="quoteCCTV" class="py-4 py-md-5" style="background: #0a0a0a;">
+  <div class="container-custom">
+    <div class="quote-cta" data-aos="flip-up">
+      <h2 class="mb-2"><i class="fas fa-camera"></i> Secure Your Property</h2>
+      <p class="mb-3" style="font-size:0.85rem;">Request a free site survey & customized CCTV proposal.</p>
+      <form id="cctvQuoteForm" class="row g-3">
+        <div class="col-md-6"><input type="text" class="form-control" placeholder="Full Name *" id="cctvName" required></div>
+        <div class="col-md-6"><input type="email" class="form-control" placeholder="Email *" id="cctvEmail" required></div>
+        <div class="col-md-6"><input type="tel" class="form-control" placeholder="Phone *" id="cctvPhone" required></div>
+        <div class="col-md-6"><input type="text" class="form-control" placeholder="Property Address" id="cctvAddress"></div>
+        <div class="col-12"><select class="form-select" id="cctvType"><option>Residential House</option><option>Commercial Building</option><option>Warehouse / Industrial</option><option>Retail Store</option></select></div>
+        <div class="col-12"><textarea class="form-control" rows="2" placeholder="Security concerns or camera count *" id="cctvMessage" required></textarea></div>
+        <div class="col-12"><button type="submit" class="btn-gold w-100 justify-content-center"><i class="fas fa-clipboard-list"></i> Request Free Quote</button></div>
+        <div id="cctvFormStatus" class="text-center mt-2" style="font-size:0.75rem;"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-4 py-md-5">
+  <div class="container-custom">
+    <div class="section-title" data-aos="fade-up">FAQs</div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div id="cctvFaqContainer"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-modern">
+  <div class="container-custom">
+    <div class="row g-4">
+      <div class="col-md-4"><i class="fas fa-bolt fs-1 text-gold"></i><h3 class="text-gold mt-2" style="font-size:1.3rem;">Dynam Peak</h3><p style="font-size:0.75rem;">Smart surveillance & electrical infrastructure since 2012.</p></div>
+      <div class="col-md-2"><h5 class="text-gold" style="font-size:0.9rem;">Quick Links</h5><ul class="list-unstyled"><li><a href="index.html" class="footer-link-modern">Home</a></li><li><a href="#" class="footer-link-modern">CCTV</a></li><li><a href="#" class="footer-link-modern">Security</a></li></ul></div>
+      <div class="col-md-3"><h5 class="text-gold" style="font-size:0.9rem;">Contact</h5><p style="font-size:0.75rem;"><i class="fas fa-phone-alt me-2" style="color:var(--gold);"></i> +1 (800) 745-3322</p><p style="font-size:0.75rem;"><i class="fas fa-envelope me-2" style="color:var(--gold);"></i> security@dynampeak.com</p></div>
+      <div class="col-md-3"><h5 class="text-gold" style="font-size:0.9rem;">Certifications</h5><p style="font-size:0.75rem;">Axis Gold Partner · Hikvision Pro</p></div>
+    </div>
+    <div class="copyright"><span>&copy; 2025 Dynam Peak Security Division. Your safety, our priority.</span></div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: false });
+  
+  // Hero Background Slider
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  let currentSlideIndex = 0;
+  let slideInterval;
+  
+  function nextHeroSlide() {
+    heroSlides[currentSlideIndex].classList.remove('active');
+    currentSlideIndex = (currentSlideIndex + 1) % heroSlides.length;
+    heroSlides[currentSlideIndex].classList.add('active');
+  }
+  
+  function startHeroSlider() {
+    if(slideInterval) clearInterval(slideInterval);
+    slideInterval = setInterval(nextHeroSlide, 5000);
+  }
+  
+  startHeroSlider();
+  
+  // Before & After Projects (5 CCTV Transformations)
+  const cctvBaProjects = [
+    { id: 1, title: "Lakeside Residence", location: "Seattle, WA", beforeImg: "https://images.unsplash.com/photo-1557321680-cc11e25daeea?w=600&h=400&fit=crop", afterImg: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600&h=400&fit=crop", features: "4K Dome Cameras", benefit: "Full coverage" },
+    { id: 2, title: "Downtown Retail", location: "Portland, OR", beforeImg: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop", afterImg: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop", features: "AI People Counting", benefit: "Theft reduced 73%" },
+    { id: 3, title: "Industrial Warehouse", location: "Dallas, TX", beforeImg: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop", afterImg: "https://images.unsplash.com/photo-1581092336088-b2c8a43a048b?w=600&h=400&fit=crop", features: "PTZ + Thermal", benefit: "24/7 detection" },
+    { id: 4, title: "Apartment Complex", location: "Miami, FL", beforeImg: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=400&fit=crop", afterImg: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop", features: "License Plate Reader", benefit: "Tenant safety" },
+    { id: 5, title: "School Campus", location: "Atlanta, GA", beforeImg: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop", afterImg: "https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=400&fit=crop", features: "Central NVR 64CH", benefit: "Full campus view" }
+  ];
+  
+  function startCountdown(cardElement, projectId) {
+    if(cardElement.hasAttribute('data-countdown-active')) return;
+    cardElement.setAttribute('data-countdown-active', 'true');
+    const timerSpan = cardElement.querySelector('.countdown-seconds');
+    let secondsLeft = 6;
+    if(timerSpan) timerSpan.innerText = secondsLeft;
+    const interval = setInterval(() => {
+      secondsLeft--;
+      if(timerSpan) timerSpan.innerText = secondsLeft;
+      if(secondsLeft <= 0) {
+        clearInterval(interval);
+        cardElement.classList.add('countdown-active');
+        const countdownDiv = cardElement.querySelector('.countdown-overlay');
+        if(countdownDiv) {
+          countdownDiv.innerHTML = '<i class="fas fa-check-circle"></i> AFTER';
+          countdownDiv.style.backgroundColor = 'rgba(255,215,0,0.9)';
+          countdownDiv.style.color = '#000';
+        }
+        const statusBadge = cardElement.querySelector('.badge-status');
+        if(statusBadge) {
+          statusBadge.innerHTML = '<i class="fas fa-video"></i> AFTER';
+          statusBadge.classList.remove('badge-before');
+          statusBadge.classList.add('badge-after');
+        }
+        cardElement.setAttribute('data-revealed', 'true');
+      }
+    }, 1000);
+    cardElement.setAttribute('data-interval-id', interval);
+  }
+  
+  function resetCard(cardElement, projectData) {
+    const oldInterval = cardElement.getAttribute('data-interval-id');
+    if(oldInterval) clearInterval(parseInt(oldInterval));
+    cardElement.classList.remove('countdown-active');
+    cardElement.removeAttribute('data-countdown-active');
+    cardElement.removeAttribute('data-revealed');
+    const countdownDiv = cardElement.querySelector('.countdown-overlay');
+    if(countdownDiv) {
+      countdownDiv.innerHTML = '<i class="fas fa-hourglass-half"></i> <span class="countdown-seconds">6</span>s';
+      countdownDiv.style.backgroundColor = 'rgba(0,0,0,0.85)';
+      countdownDiv.style.color = 'var(--gold)';
+    }
+    const statusBadge = cardElement.querySelector('.badge-status');
+    if(statusBadge) {
+      statusBadge.innerHTML = '<i class="fas fa-eye"></i> BEFORE';
+      statusBadge.classList.add('badge-before');
+      statusBadge.classList.remove('badge-after');
+    }
+    const beforeImg = cardElement.querySelector('.before-img');
+    const afterImg = cardElement.querySelector('.after-img');
+    if(beforeImg) beforeImg.style.opacity = '1';
+    if(afterImg) afterImg.style.opacity = '0';
+    startCountdown(cardElement, projectData.id);
+  }
+  
+  const gridContainer = document.getElementById('cctvBeforeAfterGrid');
+  if(gridContainer) {
+    gridContainer.innerHTML = cctvBaProjects.map(project => `
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${project.id * 80}">
+        <div class="beforeafter-card" data-project-id="${project.id}">
+          <div class="image-comparison">
+            <img src="${project.beforeImg}" class="before-img" alt="Before">
+            <img src="${project.afterImg}" class="after-img" alt="After">
+            <div class="badge-status badge-before"><i class="fas fa-eye"></i> BEFORE</div>
+            <div class="countdown-overlay"><i class="fas fa-hourglass-half"></i> <span class="countdown-seconds">6</span>s</div>
+          </div>
+          <div class="card-body-content">
+            <h4 class="project-title">${project.title}</h4>
+            <div class="project-location"><i class="fas fa-map-marker-alt me-1"></i> ${project.location}</div>
+            <div class="feature-list">
+              <div><i class="fas fa-camera"></i> ${project.features}</div>
+              <div><i class="fas fa-chart-line"></i> ${project.benefit}</div>
+            </div>
+            <button class="reset-btn" data-reset-id="${project.id}"><i class="fas fa-sync-alt"></i> Replay</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    
+    const cards = document.querySelectorAll('#cctvBeforeAfterGrid .beforeafter-card');
+    cards.forEach(card => {
+      const pid = card.getAttribute('data-project-id');
+      const pData = cctvBaProjects.find(p => p.id == pid);
+      if(pData) startCountdown(card, pData);
+      const btn = card.querySelector('.reset-btn');
+      if(btn) btn.addEventListener('click', (e) => { e.stopPropagation(); resetCard(card, pData); });
+    });
+  }
+  
+  // FAQ Data
+  const cctvFaqs = [
+    { q: "Can I view cameras remotely?", a: "Yes, all systems include mobile/PC remote access with live view and playback." },
+    { q: "Do you offer night vision?", a: "Yes, full-color night vision up to 100ft distance." },
+    { q: "How long is footage stored?", a: "30-day storage standard, expandable up to 60+ days." },
+    { q: "Are cameras wired or wireless?", a: "Both. PoE wired is most reliable, wireless available for retrofits." },
+    { q: "Do you integrate with alarms?", a: "Yes, we integrate with burglar alarms and access control." }
+  ];
+  const faqContainer = document.getElementById('cctvFaqContainer');
+  if(faqContainer) {
+    faqContainer.innerHTML = cctvFaqs.map(item => `
+      <div class="faq-item">
+        <div class="faq-question"><span>${item.q}</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer"><p>${item.a}</p></div>
+      </div>
+    `).join('');
+    document.querySelectorAll('#cctvFaqContainer .faq-item').forEach(item => {
+      const qDiv = item.querySelector('.faq-question');
+      qDiv.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        if(!isOpen) { item.classList.add('open'); const aDiv = item.querySelector('.faq-answer'); if(aDiv) aDiv.style.maxHeight = aDiv.scrollHeight + "px"; }
+        else { item.classList.remove('open'); const aDiv = item.querySelector('.faq-answer'); if(aDiv) aDiv.style.maxHeight = null; }
+      });
+    });
+  }
+  
+  // Form Submission
+  const cctvForm = document.getElementById('cctvQuoteForm');
+  const formStatus = document.getElementById('cctvFormStatus');
+  if(cctvForm) {
+    cctvForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('cctvName')?.value;
+      if(!name) { formStatus.innerHTML = '<span class="text-danger">Please enter your name.</span>'; return; }
+      formStatus.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting...';
+      setTimeout(() => {
+        formStatus.innerHTML = '<span class="text-success"><i class="fas fa-check-circle"></i> Thank you! A security expert will contact you within 24h.</span>';
+        cctvForm.reset();
+        setTimeout(() => formStatus.innerHTML = '', 5000);
+      }, 1000);
+    });
+  }
+  
+  // Smooth anchors
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if(href && href !== '#' && href !== '#0') {
+        const target = document.querySelector(href);
+        if(target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      }
+    });
+  });
+</script>
+</body>
+</html>
